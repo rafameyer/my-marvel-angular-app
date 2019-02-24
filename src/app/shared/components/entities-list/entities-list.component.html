@@ -1,0 +1,63 @@
+<h2 class="mh-subtitle">{{title}}</h2>
+
+<div class="mh-search-container">
+  <p>Nome o personagem</p>
+  <form (submit)="onSearch(searchInput.value)">
+    <input type="text" #searchInput [value]="query">
+    <button type="submit">Buscar</button>
+  </form>
+</div>
+
+<div *ngIf="isLoading">
+  Carregando...
+</div>
+
+<!-- <div *ngIf="entities && !isLoading" class="mh-cards-list">
+  <mh-entities-list-item
+  *ngFor="let entity of entities.data.results"
+  [entity]="entity"
+  class="mh-cards-list__item"
+  ></mh-entities-list-item>
+</div> -->
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Personagem</th>
+      <th scope="col">Séries</th>
+      <th scope="col">Eventos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>
+        <mh-entities-list-item
+        *ngFor="let entity of entities.data.results"
+        [entity]="entity"
+        class="mh-cards-list__item"
+        ></mh-entities-list-item>
+      </th>
+      <th>
+        <mh-entities-list-item
+        *ngFor="let entity of entities.data.results"
+        [entity]="entity"
+        class="mh-cards-list__item"
+        ></mh-entities-list-item>
+      </th>
+      <th>
+        <mh-entities-list-item
+        *ngFor="let entity of entities.data.results"
+        [entity]="entity"
+        class="mh-cards-list__item"
+        ></mh-entities-list-item>
+      </th>
+    </tr>
+  </tbody>
+</table>
+
+<mh-pagination
+*ngIf="getTotalPages()"
+[currentPage]="page"
+[totalPages]="getTotalPages()"
+(change)="onChangePage($event)"
+></mh-pagination>
